@@ -1,0 +1,34 @@
+{
+  "manifest_version": 2,
+
+  "name":"Mailcheck",
+  "description":"Suggests a right domain when your users misspell it in an email address.",
+  "version": "1.0",
+
+  "permissions": [ "notifications" ],
+
+  "icons": { 
+    "16": "images/icon16.png",
+    "48": "images/icon48.png",
+    "128": "images/icon128.png"
+  },
+
+  "web_accessible_resources": [
+    "images/icon48.png"
+  ],
+
+  "background": {
+      "persistent": false,
+      "scripts": [ "background.js" ]
+   },
+
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": [
+      "lib/mailcheck.js",
+      "script.js"
+    ],
+    "run_at": "document_end",
+    "all_frames": true
+  }]
+}
