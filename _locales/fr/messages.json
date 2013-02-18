@@ -1,0 +1,24 @@
+{
+    "extName": {
+        "message": "MailCheck",
+        "description": "Nom de l'extension."
+    },
+    "extDescription": {
+        "message": "Suggère le bon nom de domaine quand un utilisateur mal écrit une adresse email.",
+        "description": "Description de l'extension."
+    },
+    "notifTitle": {
+        "message": "MailCheck!",
+        "description": "Titre de la notification."
+    },
+    "notifMessage": {
+        "message": "Vouliez-vous dire $suggestion$ ?",
+        "description": "Message de la notification.",
+        "placeholders": {
+            "suggestion": {
+                "content": "$1",
+                "example": "user@hotmail.com"
+            }
+        }
+    }
+}

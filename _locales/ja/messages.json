@@ -1,0 +1,24 @@
+{
+    "extName": {
+        "message": "メールチェック",
+        "description": "拡張機能名。"
+    },
+    "extDescription": {
+        "message": "ユーザーが間違えてアドレスを入力した際に正しいドメインを表します。",
+        "description": "拡張機能記述。"
+    },
+    "notifTitle": {
+        "message": "メールチェック！",
+        "description": "通知タイトル。"
+    },
+    "notifMessage": {
+        "message": "もしかして$suggestion$？",
+        "description": "通知メッセージ。",
+        "placeholders": {
+            "suggestion": {
+                "content": "$1",
+                "example": "user@hotmail.com"
+            }
+        }
+    }
+}

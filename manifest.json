@@ -1,35 +1,37 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name":"Mailcheck",
-  "description":"Suggests a right domain when your users misspell it in an email address.",
-  "version": "1.1",
+    "name":"__MSG_extName__",
+    "description":"__MSG_extDescription__",
+    "version": "1.1",
 
-  "permissions": [ "notifications" ],
+    "default_locale": "en",
 
-  "icons": { 
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
-  },
+    "permissions": [ "notifications" ],
 
-  "web_accessible_resources": [
-    "images/icon48.png"
-  ],
+    "icons": { 
+        "16": "images/icon16.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
+    },
 
-  "background": {
-      "persistent": false,
-      "scripts": [ "background.js" ]
-   },
-
-  "content_scripts": [{
-    "matches": ["<all_urls>"],
-    "js": [
-      "lib/zepto.min.js",
-      "lib/mailcheck.min.js",
-      "script.js"
+    "web_accessible_resources": [
+        "images/icon48.png"
     ],
-    "run_at": "document_end",
-    "all_frames": true
-  }]
+
+    "background": {
+        "persistent": false,
+        "scripts": [ "background.js" ]
+    },
+
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": [
+            "lib/zepto.min.js",
+            "lib/mailcheck.min.js",
+            "script.js"
+        ],
+        "run_at": "document_end",
+        "all_frames": true
+    }]
 }
