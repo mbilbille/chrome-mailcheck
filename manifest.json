@@ -25,7 +25,8 @@
   "content_scripts": [{
     "matches": ["<all_urls>"],
     "js": [
-      "lib/mailcheck.js",
+      "lib/zepto.min.js",
+      "lib/mailcheck.min.js",
       "script.js"
     ],
     "run_at": "document_end",

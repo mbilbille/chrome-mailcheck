@@ -12,23 +12,14 @@
  **/
 
  var MailCheck = {
+    elementTypes: ['textarea', 'input[type="text"]', 'input[type="email"]'],
     init: function(){
-        var inputs = document.querySelectorAll('textarea, input[type="text"], input[type="email"]');
-        for (var i in inputs) {
-            MailCheck.live("blur", inputs[i], function(element){
-                MailCheck.run(element);
-            });
-        }
-    },
-    live: function(eventType, element, callback) {
-        document.addEventListener(eventType, function (event) {
-            if (event.target === element) {
-                callback.call(event.target, event.target);
-            }
-        }, true);
+        $(document).on('blur', MailCheck.elementTypes, function(e){
+                MailCheck.run(this);
+        });
     },
     run: function(element) {
-        var re = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/gi;
+        var re = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,5})\b/gi;
         var emails = element.value.match(re);
         for(var i in emails) {
             if(i == "index" || i == "input") {
