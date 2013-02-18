@@ -1,26 +1,49 @@
-// Get all inputs.
-var inputs = document.getElementsByTagName('input');
-
-// Keep inputs which might holds mail address.
-for (var i=0; i<inputs.length; i++) {
-  if(inputs[i].type == "email" || inputs[i].name.match(/e?-?mail/) || inputs[i].id.match(/e?-?mail/)) {
-    inputs[i].addEventListener("blur", function(){
-      run(this);
-    },
-    false);
-  }
-}
-
 /**
- * Runs Kicksend mailcheck.
- */
- function run(input){
-  Kicksend.mailcheck.run({
-    email: input.value,
-    suggested: function(suggestion) {
-      chrome.extension.sendMessage({suggestion: suggestion.full});
+ * Mailcheck for Chrome https://github.com/mbilbille/chrome-mailcheck
+ * Author
+ * Matthieu Bilbille (@bilubilu28)
+ *
+ * License
+ * Copyright (c) 2012 Receivd, Inc.
+ *
+ * Licensed under the MIT License.
+ *
+ * v 1.1
+ **/
+
+ var MailCheck = {
+    init: function(){
+        var inputs = document.querySelectorAll('textarea, input[type="text"], input[type="email"]');
+        for (var i in inputs) {
+            MailCheck.live("blur", inputs[i], function(element){
+                MailCheck.run(element);
+            });
+        }
     },
-    empty: function() {
+    live: function(eventType, element, callback) {
+        document.addEventListener(eventType, function (event) {
+            if (event.target === element) {
+                callback.call(event.target, event.target);
+            }
+        }, true);
+    },
+    run: function(element) {
+        var re = /\b([A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4})\b/gi;
+        var emails = element.value.match(re);
+        for(var i in emails) {
+            if(i == "index" || i == "input") {
+                continue;
+            }
+            Kicksend.mailcheck.run ({
+                email: emails[i],
+                suggested: function(suggestion) {
+                    chrome.extension.sendMessage({suggestion: suggestion.full});
+                },
+                empty: function() {
+                }
+            });
+        }
     }
-  });
 }
+
+MailCheck.init();
