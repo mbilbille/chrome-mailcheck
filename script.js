@@ -13,9 +13,19 @@
 
  var MailCheck = {
     elementTypes: ['textarea', 'input[type="text"]', 'input[type="email"]'],
+    domains: [],
     init: function(){
         $(document).on('blur', MailCheck.elementTypes, function(e){
                 MailCheck.run(this);
+        });
+        chrome.storage.sync.get('domains',function(items){
+            if(!items.domains){
+                MailCheck.domains = Kicksend.mailcheck.defaultDomains;
+                chrome.storage.sync.set({'domains': Kicksend.mailcheck.defaultDomains});
+            }
+            else{
+                MailCheck.domains = items.domains;
+            }
         });
     },
     run: function(element) {
@@ -27,6 +37,7 @@
             }
             Kicksend.mailcheck.run ({
                 email: emails[i],
+                domains: MailCheck.domains,
                 suggested: function(suggestion) {
                     chrome.extension.sendMessage({suggestion: suggestion.full});
                 },

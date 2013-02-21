@@ -7,17 +7,22 @@
 
     "default_locale": "en",
 
-    "permissions": [ "notifications" ],
+    "permissions": [ 
+        "notifications",
+        "storage"
+    ],
 
     "icons": { 
-        "16": "images/icon16.png",
-        "48": "images/icon48.png",
-        "128": "images/icon128.png"
+        "16": "resources/images/icon16.png",
+        "48": "resources/images/icon48.png",
+        "128": "resources/images/icon128.png"
     },
 
     "web_accessible_resources": [
-        "images/icon48.png"
+        "resources/images/icon48.png"
     ],
+
+    "options_page": "resources/pages/options.html",
 
     "background": {
         "persistent": false,
@@ -27,8 +32,8 @@
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": [
-            "lib/zepto.min.js",
-            "lib/mailcheck.min.js",
+            "resources/lib/zepto.min.js",
+            "resources/lib/mailcheck.min.js",
             "script.js"
         ],
         "run_at": "document_end",

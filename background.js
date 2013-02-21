@@ -1,7 +1,7 @@
 chrome.extension.onMessage.addListener(
     function(request, sender, sendResponse) {
         var notification = webkitNotifications.createNotification(
-            'images/icon48.png',
+            'resources/images/icon48.png',
             chrome.i18n.getMessage("notifTitle"),
             chrome.i18n.getMessage("notifMessage", [request.suggestion])
         );
