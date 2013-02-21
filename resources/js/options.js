@@ -13,8 +13,6 @@
     save: function(){
         var domains = $("#domains").val().replace(/\s+/g, '').split(',');
 
-        console.log(domains);
-
         // Update status to let user know options were saved.
         chrome.storage.sync.set({'domains': domains}, function() {
             var status = document.getElementById("status");
