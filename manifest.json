@@ -3,7 +3,7 @@
 
     "name":"__MSG_extName__",
     "description":"__MSG_extDescription__",
-    "version": "1.2",
+    "version": "1.3",
 
     "default_locale": "en",
 
@@ -34,6 +34,7 @@
         "js": [
             "resources/lib/zepto.min.js",
             "resources/lib/mailcheck.min.js",
+            "resources/js/options.js",
             "script.js"
         ],
         "run_at": "document_end",

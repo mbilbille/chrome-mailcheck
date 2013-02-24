@@ -1,39 +1,58 @@
-<html i18n-values="dir:textdirection;" id="uber" class="loading">
+<html>
 <head>
     <meta charset="utf-8">
     <title i18n-content="pageTitle">Settings</title>
+    <script type="text/javascript" src="/resources/lib/mailcheck.min.js"></script>
     <script type="text/javascript" src="/resources/lib/zepto.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/resources/css/chrome-bootstrap.css">
+    <style type="text/css">
+    .hide{
+        display: none;
+    }
+    </style>
 </head>
 
-<body class="frame">
+<body page="options" class="frame">
     <div class="navigation">
         <h1 i18n-content="showExtName">MailCheck</h1>
-        <ul class="menu">
-            <li class="selected">
-                <a href="#settings" i18n-content="settings">Settings</a>
-            </li>
-        </ul>
-    </div>
-    <div class="mainview view">
-        <div id="settings" class="selected">
-            <header>
-                <h1 i18n-content="settings">Settings</h1>
-            </header>
-            <div class="content">
-                <section>
-                    <h3 i18n-content="sectionTitleDomains">Domains</h3>
-                    <textarea id="domains" rows="4" cols="80"></textarea>
-                    <p i18n-content="addDomainsDescription">You can add any domains here (or remove some). Seperate with a comma.</p>
-                </section>
-            </div>
-            <div class="controls">
-                <div id="status" class="text"></div>
-                <div class="spacer"></div>
-                <button id="save" i18n-content="save">Save</button>
+            <ul class="menu">
+                <li class="selected">
+                    <a href="#settings" i18n-content="settings">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mainview view">
+            <div id="settings" class="selected">
+                <header>
+                    <h1 i18n-content="settings">Settings</h1>
+                </header>
+                <div class="content">
+                    <section>
+                        <h3 i18n-content="sectionTitleDomains">Domains</h3>
+                        <p i18n-content="addDomainsDescription">You can add (or remove) domains here, separated with a comma. MailCheck will suggest "user@gmail.com" when a user types in "user@gmial.con".</p>
+                        <textarea id="domains" rows="4" cols="80"></textarea>
+                    </section>
+                    <section class="advanced hide">
+                        <h3 i18n-content="sectionTitleTopLevelDomains">Top level domains</h3>
+                        <p i18n-content="addTopLevelDomainsDescription">If you prefer to restrict suggestion on top level domains, you can add top level domains here, separated with a comma. MailCheck will suggest ".com" when a user types in "user@hotmail.cmo". </p>
+                        <textarea id="topLevelDomains" rows="4" cols="80"></textarea>
+                    </section>
+                    <section class="advanced hide">
+                        <h3 i18n-content="sectionTitleSelectors">Selectors</h3>
+                        <p i18n-content="addSelectorsDescription">You can define a set of elements on which MailCheck will add event listeners.</p>
+                        <textarea id="selectors" rows="4" cols="80"></textarea>
+                    </section>
+                </div>
+                <div class="controls">
+                    <div id="showmore" class="text">
+                        <a href="#" id="showAdvanced">Show advanced settings...</a>
+                        <a href="#" id="hideAdvanced" class="hide">Hide advanced settings...</a>
+                    </div>
+                    <div class="spacer"></div>
+                    <div id="status" class="text"></div>
+                </div>
             </div>
         </div>
-    </div>
-</body>
-<script src="/resources/js/options.js"></script>
-</html>
+    </body>
+    <script type="text/javascript" src="/resources/js/options.js"></script>
+    </html>
