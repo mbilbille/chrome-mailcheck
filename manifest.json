@@ -34,9 +34,11 @@
         "js": [
             "resources/lib/zepto.min.js",
             "resources/lib/mailcheck.min.js",
+            "resources/js/tooltip.js",
             "resources/js/options.js",
             "script.js"
         ],
+        "css": [ "resources/css/tooltip.css" ],
         "run_at": "document_end",
         "all_frames": true
     }]

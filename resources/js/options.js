@@ -6,6 +6,7 @@
  */
 
  var MailCheckOptions = {
+    alertType: "tooltip",
     domains: Kicksend.mailcheck.defaultDomains,
     topLevelDomains: [],
     selectors: ['textarea', 'input[type="text"]', 'input[type="email"]'],
@@ -13,8 +14,11 @@
         document.addEventListener('DOMContentLoaded', MailCheckOptions.load(function(){
             MailCheckOptions.restore();
         }));
-        $(document).on('blur', ['textarea'], function(e){
-                MailCheckOptions.save();
+        $(document).on('blur', ['textarea', 'input'], function(e){
+            MailCheckOptions.save();
+        });
+        $(document).on('change', ["input[type='radio']"], function(e){
+            MailCheckOptions.save();
         });
         $(document).on('click', "#showAdvanced", function(e) {
             $(".advanced").toggle();
@@ -29,12 +33,18 @@
     save: function(){
         // Retrieve data
         MailCheckOptions.domains = $("#domains").val().replace(/\s+/g, '').split(',');
+        $("input[name='alertType']").each(function(){
+            if($(this).attr('checked') == true){
+                MailCheckOptions.alertType = $(this).val();
+            }
+        });
         MailCheckOptions.topLevelDomains = $("#topLevelDomains").val().replace(/\s+/g, '').split(',');
-        MailCheckOptions.selectors = $("#selectors").val().replace(/\s+/g, '').split(',');
-        
+        MailCheckOptions.selectors = $("#selectors").val().replace(/\s+/g, '').split(',');        
+
         // ... and save it
         var data = {
             'domains': MailCheckOptions.domains,
+            'alertType': MailCheckOptions.alertType,
             'topLevelDomains': MailCheckOptions.topLevelDomains,
             'selectors': MailCheckOptions.selectors,
         };
@@ -48,7 +58,7 @@
         });
     },
     load: function(callback){
-        chrome.storage.sync.get(['domains', 'topLevelDomains', 'selectors'], function(items){
+        chrome.storage.sync.get(['domains', 'topLevelDomains', 'selectors', 'alertType'], function(items){
             for(var i in items) {
                 MailCheckOptions[i] = items[i];
             }
@@ -62,6 +72,7 @@
         $("#domains").val(MailCheckOptions.domains.join(', '));
         $("#topLevelDomains").val(MailCheckOptions.topLevelDomains.join(', '));
         $("#selectors").val(MailCheckOptions.selectors.join(', '));
+        $("input[name='alertType'][value='" + MailCheckOptions.alertType + "']").attr('checked', "true");
     }
 };
 

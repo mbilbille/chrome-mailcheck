@@ -427,7 +427,7 @@ button:focus {
 
   -webkit-transition: border-color 200ms;
   /* We use border color because it follows the border radius (unlike outline).
-     * This is particularly noticeable on mac. */
+  * This is particularly noticeable on mac. */
 
   border-color: #4d90fe;
   outline: none;

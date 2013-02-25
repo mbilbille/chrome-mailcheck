@@ -28,7 +28,12 @@
                 domains: MailCheckOptions.domains,
                 topLevelDomains: MailCheckOptions.topLevelDomains,
                 suggested: function(suggestion) {
-                    chrome.extension.sendMessage({suggestion: suggestion.full});
+                    switch(MailCheckOptions.alertType){
+                        case "notification" : chrome.extension.sendMessage({suggestion: suggestion.full});
+                        break;
+                        case "tooltip" : MailCheckTooltip.create(emails[i], suggestion.full).show($(element));
+                        break;
+                    }    
                 },
                 empty: function() {
                 }
