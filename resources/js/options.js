@@ -5,21 +5,19 @@
  * Matthieu Bilbille (@bilubilu28)
  */
 
- var MailCheckOptions = {
+var mailcheck = mailcheck || {};
+ mailcheck.options = {
     alertType: "tooltip",
     domains: Kicksend.mailcheck.defaultDomains,
     topLevelDomains: [],
     selectors: ['textarea', 'input[type="text"]', 'input[type="email"]'],
+
     init: function(){
-        document.addEventListener('DOMContentLoaded', MailCheckOptions.load(function(){
-            MailCheckOptions.restore();
+        document.addEventListener('DOMContentLoaded', mailcheck.options.load(function(){
+            mailcheck.options.restore();
         }));
-        $(document).on('blur', ['textarea', 'input'], function(e){
-            MailCheckOptions.save();
-        });
-        $(document).on('change', ["input[type='radio']"], function(e){
-            MailCheckOptions.save();
-        });
+        $(document).on('blur', ['textarea', 'input'], mailcheck.options.save.bind(this));
+        $(document).on('change', ["input[type='radio']"], mailcheck.options.save.bind(this));
         $(document).on('click', "#showAdvanced", function(e) {
             $(".advanced").toggle();
             $("#showAdvanced").hide();
@@ -32,21 +30,21 @@
     },
     save: function(){
         // Retrieve data
-        MailCheckOptions.domains = $("#domains").val().replace(/\s+/g, '').split(',');
+        this.domains = $("#domains").val().replace(/\s+/g, '').split(',');
         $("input[name='alertType']").each(function(){
-            if($(this).attr('checked') == true){
-                MailCheckOptions.alertType = $(this).val();
+            if(this.checked == true){
+                mailcheck.options.alertType = $(this).val();
             }
         });
-        MailCheckOptions.topLevelDomains = $("#topLevelDomains").val().replace(/\s+/g, '').split(',');
-        MailCheckOptions.selectors = $("#selectors").val().replace(/\s+/g, '').split(',');        
+        this.topLevelDomains = $("#topLevelDomains").val().replace(/\s+/g, '').split(',');
+        this.selectors = $("#selectors").val().replace(/\s+/g, '').split(',');        
 
         // ... and save it
         var data = {
-            'domains': MailCheckOptions.domains,
-            'alertType': MailCheckOptions.alertType,
-            'topLevelDomains': MailCheckOptions.topLevelDomains,
-            'selectors': MailCheckOptions.selectors,
+            'domains': this.domains,
+            'alertType': this.alertType,
+            'topLevelDomains': this.topLevelDomains,
+            'selectors': this.selectors,
         };
         chrome.storage.sync.set(data, function() {
             // Update status to let user know options were saved.
@@ -60,7 +58,7 @@
     load: function(callback){
         chrome.storage.sync.get(['domains', 'topLevelDomains', 'selectors', 'alertType'], function(items){
             for(var i in items) {
-                MailCheckOptions[i] = items[i];
+                mailcheck.options[i] = items[i];
             }
 
             if(typeof callback == "function"){
@@ -69,13 +67,13 @@
         });
     },
     restore: function(){
-        $("#domains").val(MailCheckOptions.domains.join(', '));
-        $("#topLevelDomains").val(MailCheckOptions.topLevelDomains.join(', '));
-        $("#selectors").val(MailCheckOptions.selectors.join(', '));
-        $("input[name='alertType'][value='" + MailCheckOptions.alertType + "']").attr('checked', "true");
+        $("#domains").val(this.domains.join(', '));
+        $("#topLevelDomains").val(this.topLevelDomains.join(', '));
+        $("#selectors").val(this.selectors.join(', '));
+        $("input[name='alertType'][value='" + this.alertType + "']").attr('checked', "true");
     }
 };
 
 if($("body").attr('page') === "options"){
-    MailCheckOptions.init();
+    mailcheck.options.init();
 }

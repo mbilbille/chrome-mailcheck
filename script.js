@@ -8,11 +8,12 @@
  * v 1.3
  **/
 
- var MailCheck = {
+ var mailcheck = mailcheck || {};
+ mailcheck.extension = {
     init: function(){
-        MailCheckOptions.load(function(){
-            $(document).on('blur', MailCheckOptions.selectors, function(e){
-                MailCheck.run(this);
+        mailcheck.options.load(function(){
+            $(document).on('blur', mailcheck.options.selectors, function(e){
+                mailcheck.extension.run(this);
             });
         });
     },
@@ -25,13 +26,13 @@
             }
             Kicksend.mailcheck.run ({
                 email: emails[i],
-                domains: MailCheckOptions.domains,
-                topLevelDomains: MailCheckOptions.topLevelDomains,
+                domains: mailcheck.options.domains,
+                topLevelDomains: mailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
-                    switch(MailCheckOptions.alertType){
+                    switch(mailcheck.options.alertType){
                         case "notification" : chrome.extension.sendMessage({suggestion: suggestion.full});
                         break;
-                        case "tooltip" : MailCheckTooltip.create(emails[i], suggestion.full).show($(element));
+                        case "tooltip" : mailcheck.tooltip.create(emails[i], suggestion.full).show($(element));
                         break;
                     }    
                 },
@@ -40,6 +41,5 @@
             });
         }
     }
-}
-
-MailCheck.init();
+};
+mailcheck.extension.init();
