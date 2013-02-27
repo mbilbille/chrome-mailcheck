@@ -4,7 +4,7 @@
         "description": "Nom de l'extension."
     },
     "extDescription": {
-        "message": "Suggère le bon nom de domaine quand un utilisateur mal écrit une adresse email.",
+        "message": "Suggère un domaine correct quand vous l'avez mal orthographié dans une adresse e-mail.",
         "description": "Description de l'extension."
     },
     "notifTitle": {

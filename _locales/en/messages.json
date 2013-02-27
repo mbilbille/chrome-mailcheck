@@ -4,7 +4,7 @@
         "description": "Extension name."
     },
     "extDescription": {
-        "message": "Suggests a right domain when your users misspell it in an email address.",
+        "message": "Suggests a right domain when you misspell it in an email address.",
         "description": "Extension description."
     },
     "notifTitle": {
