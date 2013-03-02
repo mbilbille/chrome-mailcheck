@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title i18n-content="pageTitle">Settings</title>
+    <title i18n-content="settingsPageTitle"></title>
     <script type="text/javascript" src="/resources/lib/mailcheck.min.js"></script>
     <script type="text/javascript" src="/resources/lib/zepto.min.js"></script>
     <link rel="stylesheet" type="text/css" href="/resources/css/chrome-bootstrap.css">
@@ -14,51 +14,51 @@
 
 <body page="options" class="frame">
     <div class="navigation">
-        <h1 i18n-content="showExtName">MailCheck</h1>
+        <h1 i18n-content="extName"></h1>
         <ul class="menu">
             <li class="selected">
-                <a href="#settings" i18n-content="settings">Settings</a>
+                <a href="#settings" i18n-content="settingsPageTitle"></a>
             </li>
         </ul>
     </div>
     <div class="mainview view">
         <div id="settings" class="selected">
             <header>
-                <h1 i18n-content="settings">Settings</h1>
+                <h1 i18n-content="settingsPageTitle"></h1>
             </header>
             <div class="content">
                 <section>
-                    <h3 i18n-content="sectionTitleDomains">Domains</h3>
-                    <p i18n-content="addDomainsDescription">You can add (or remove) domains here, separated with a comma. MailCheck will suggest "user@gmail.com" when a user types in "user@gmial.con".</p>
+                    <h3 i18n-content="sectionTitleDomains"></h3>
+                    <p i18n-content="addDomainsDescription"></p>
                     <textarea id="domains" rows="4" cols="80"></textarea>
                 </section>
                 <section>
-                    <h3 i18n-content="sectionTitleDomains">Notification</h3>
-                    <p i18n-content="addDomainsDescription">How would you like to get alerted?</p>
+                    <h3 i18n-content="sectionTitleNotification"></h3>
+                    <p i18n-content="changeNotificationDescription"></p>
                     <p>
                         <input type="radio" id="alertTypeTooltip" name="alertType" value="tooltip"/>
-                        <label for="alertTypeTooltip">Inline HTML tooltip</label>
+                        <label for="alertTypeTooltip" i18n-content="optionsNotification1"></label>
                     </p>
                     <p>
                         <input type="radio" id="alertTypeNotification" name="alertType" value="notification"/>
-                        <label for="alertTypeNotification">Chrome desktop notification</label>
+                        <label for="alertTypeNotification" i18n-content="optionsNotification2"></label>
                     </p>
                 </section>
                 <section class="advanced hide">
-                    <h3 i18n-content="sectionTitleTopLevelDomains">Top level domains</h3>
-                    <p i18n-content="addTopLevelDomainsDescription">If you prefer to restrict suggestion on top level domains, you can add top level domains here, separated with a comma. MailCheck will suggest ".com" when a user types in "user@hotmail.cmo". </p>
+                    <h3 i18n-content="sectionTitleTopLevelDomains"></h3>
+                    <p i18n-content="addTopLevelDomainsDescription"></p>
                     <textarea id="topLevelDomains" rows="4" cols="80"></textarea>
                 </section>
                 <section class="advanced hide">
-                    <h3 i18n-content="sectionTitleSelectors">Selectors</h3>
-                    <p i18n-content="addSelectorsDescription">You can define a set of elements on which MailCheck will add event listeners.</p>
+                    <h3 i18n-content="sectionTitleSelectors"></h3>
+                    <p i18n-content="addSelectorsDescription"></p>
                     <textarea id="selectors" rows="4" cols="80"></textarea>
                 </section>
             </div>
             <div class="controls">
                 <div id="showmore" class="text">
-                    <a href="#" id="showAdvanced">Show advanced settings...</a>
-                    <a href="#" id="hideAdvanced" class="hide">Hide advanced settings...</a>
+                    <a href="#" id="showAdvanced" i18n-content="showAdvancedSettingsLabel"></a>
+                    <a href="#" id="hideAdvanced" i18n-content="hideAdvancedSettingsLabel" class="hide">a</a>
                 </div>
                 <div class="spacer"></div>
                 <div id="status" class="text"></div>

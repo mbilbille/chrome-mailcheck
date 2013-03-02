@@ -5,7 +5,7 @@
  * Matthieu Bilbille (@bilubilu28)
  */
 
-var mailcheck = mailcheck || {};
+ var mailcheck = mailcheck || {};
  mailcheck.options = {
     alertType: "tooltip",
     domains: Kicksend.mailcheck.defaultDomains,
@@ -71,9 +71,15 @@ var mailcheck = mailcheck || {};
         $("#topLevelDomains").val(this.topLevelDomains.join(', '));
         $("#selectors").val(this.selectors.join(', '));
         $("input[name='alertType'][value='" + this.alertType + "']").attr('checked', "true");
+    },
+    localize: function() {
+        $("[i18n-content]").each(function() {
+            $(this).html(chrome.i18n.getMessage($(this).attr("i18n-content")));
+        });
     }
 };
 
 if($("body").attr('page') === "options"){
     mailcheck.options.init();
+    mailcheck.options.localize();
 }

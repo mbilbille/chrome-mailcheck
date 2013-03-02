@@ -20,5 +20,57 @@
                 "example": "user@hotmail.com"
             }
         }
+    },
+    "settingsPageTitle": {
+        "message": "Paramètres",
+        "description": "Titre de la page Paramètres."
+    },
+    "sectionTitleDomains": {
+        "message": "Domaines",
+        "description": "Titre le la section Domaines."
+    },
+    "addDomainsDescription": {
+        "message": "Vous pouvez ajouter (ou supprimer) des domaines ici, séparé par une virgule. MailCheck suggérera \"user@gmail.com\" si un utilisateur tape \"user@gmial.con\".",
+        "description": "Description de la section Domaines."
+    },
+    "sectionTitleNotification": {
+        "message": "Notification",
+        "description": "Titre de la section Notification."
+    },
+    "changeNotificationDescription": {
+        "message": "Comment souhaitez-vous être alerté(e)?",
+        "description": "Description de la section Notification."
+    },
+    "optionsNotification1": {
+        "message": "Info-bulle HTML",
+        "description": "Première option de notification."
+    },
+    "optionsNotification2": {
+        "message": "Notification Chrome",
+        "description": "Seconde option de notification."
+    },
+    "sectionTitleTopLevelDomains": {
+        "message": "Domaine de premier niveau",
+        "description": "Titre de la section Domaine de premier niveau."
+    },
+    "addTopLevelDomainsDescription": {
+        "message": "Si vous préférez restreindre les suggestions au .com, .fr, etc., vous pouvez ajouter des domaines de premier niveau ici, séparés par une virgule. MailCheck suggérera \".com\" si un utilisateur tape \"user@hotmail.cmo\".",
+        "description": "Description de la section Domaine de premier niveau."
+    },
+    "sectionTitleSelectors": {
+        "message": "Selecteurs",
+        "description": "Titre de la section Selecteurs."
+    },
+    "addSelectorsDescription": {
+        "message": "Vous pouvez définir un ensemble d'éléments sur lequel MailCheck ajoutera des \"event listeners\".",
+        "description": "Description de la section Selecteurs."
+    },
+    "showAdvancedSettingsLabel": {
+        "message": "Afficher les paramètres avancés…",
+        "description": "Lien Afficher les paramètres avancés."
+    },
+    "hideAdvancedSettingsLabel": {
+        "message": "Masquer les paramètres avancés…",
+        "description": "Lien Masquer les paramètres avancés."
     }
 }

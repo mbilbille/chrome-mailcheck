@@ -20,5 +20,57 @@
                 "example": "user@hotmail.com"
             }
         }
+    },
+    "settingsPageTitle": {
+        "message": "Settings",
+        "description": "Settings page title."
+    },
+    "sectionTitleDomains": {
+        "message": "Domains",
+        "description": "Domains section title."
+    },
+    "addDomainsDescription": {
+        "message": "You can add (or remove) domains here, separated with a comma. MailCheck will suggest \"user@gmail.com\" when a user types in \"user@gmial.con\".",
+        "description": "Domains section description."
+    },
+    "sectionTitleNotification": {
+        "message": "Notification",
+        "description": "Notification section title."
+    },
+    "changeNotificationDescription": {
+        "message": "How would you like to get alerted?",
+        "description": "Notification section description."
+    },
+    "optionsNotification1": {
+        "message": "Inline HTML tooltip",
+        "description": "Notification first option."
+    },
+    "optionsNotification2": {
+        "message": "Chrome desktop notification",
+        "description": "Notification second option."
+    },
+    "sectionTitleTopLevelDomains": {
+        "message": "Top level domains",
+        "description": "Top level section title."
+    },
+    "addTopLevelDomainsDescription": {
+        "message": "If you prefer to restrict suggestion on top level domains, you can add top level domains here, separated with a comma. MailCheck will suggest \".com\" when a user types in \"user@hotmail.cmo\".",
+        "description": "Top level section description."
+    },
+    "sectionTitleSelectors": {
+        "message": "Selectors",
+        "description": "Selectors section title."
+    },
+    "addSelectorsDescription": {
+        "message": "You can define a set of elements on which MailCheck will add event listeners.",
+        "description": "Selectors section description."
+    },
+    "showAdvancedSettingsLabel": {
+        "message": "Show advanced settings…",
+        "description": "Show advanced settings link."
+    },
+    "hideAdvancedSettingsLabel": {
+        "message": "Hide advanced settings…",
+        "description": "Hide advanced settings link."
     }
 }
