@@ -5,7 +5,7 @@
  *
  * Licensed under the MIT License.
  *
- * v 1.4
+ * v 1.5
  **/
 
  var mailcheck = mailcheck || {};
