@@ -14,7 +14,7 @@
     timeout: '',
     target: '',
 
-    element: $('<div class="mailcheck-tooltip"></div>'),
+    element: $('<div class="mailcheck-tooltip" style="background-image: url(\'' + chrome.runtime.getURL("/resources/images/icon16.png") + '\');"></div>'),
     left: 0,
     top: 0,
     width: 0,

@@ -19,7 +19,8 @@
     },
 
     "web_accessible_resources": [
-        "resources/images/icon48.png"
+        "resources/images/icon16.png",
+        "resources/images/icon128.png"
     ],
 
     "options_page": "resources/pages/options.html",
