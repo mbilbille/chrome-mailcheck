@@ -1,6 +1,6 @@
 #mailcheck extension for Chrome
 
-Chrome extension to suggests a right domain when your users misspell it in an email address.
+Chrome extension to suggest a right domain when you misspell it in an email address.
 
 ##What does it do?
 
