@@ -3,7 +3,7 @@
 
     "name":"__MSG_extName__",
     "description":"__MSG_extDescription__",
-    "version": "1.5",
+    "version": "1.5.1",
 
     "default_locale": "en",
 
@@ -27,7 +27,7 @@
 
     "background": {
         "persistent": false,
-        "scripts": [ "background.js" ]
+        "page": "background.html"
     },
 
     "content_scripts": [{
@@ -42,5 +42,7 @@
         "css": [ "resources/css/tooltip.css" ],
         "run_at": "document_end",
         "all_frames": true
-    }]
+    }],
+
+    "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }

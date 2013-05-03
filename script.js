@@ -5,11 +5,11 @@
  *
  * Licensed under the MIT License.
  *
- * v 1.5
+ * v 1.5.1
  **/
 
- var mailcheck = mailcheck || {};
- mailcheck.extension = {
+var mailcheck = mailcheck || {};
+mailcheck.extension = {
     init: function(){
         mailcheck.options.load(function(){
             $(document).on('blur', mailcheck.options.selectors, function(e){
@@ -30,13 +30,15 @@
                 topLevelDomains: mailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
                     switch(mailcheck.options.alertType){
-                        case "notification" : chrome.extension.sendMessage({suggestion: suggestion.full});
+                        case "notification" : chrome.extension.sendMessage({type: 'notification', suggestion: suggestion.full});
                         break;
                         case "tooltip" : mailcheck.tooltip.create(emails[i], suggestion.full).show($(element));
                         break;
-                    }    
+                    } 
+                    chrome.extension.sendMessage({type: 'ga', result: 'suggested'});
                 },
                 empty: function() {
+                    chrome.extension.sendMessage({type: 'ga', result: 'empty'});
                 }
             });
         }
