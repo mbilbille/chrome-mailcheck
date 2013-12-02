@@ -12,7 +12,7 @@ var mailcheck = mailcheck || {};
 mailcheck.extension = {
     init: function(){
         mailcheck.options.load(function(){
-            $(document).on('blur', mailcheck.options.selectors, function(e){
+            $(document).on('blur', mailcheck.options.selectors.join(','), function(e){
                 mailcheck.extension.run(this);
             });
         });
