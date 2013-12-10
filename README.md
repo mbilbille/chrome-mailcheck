@@ -8,4 +8,11 @@ When a user types in "user@hotnail.con", Mailcheck will suggest "user@hotmail.co
 
 ![diagram](https://github.com/mbilbille/chrome-mailcheck/raw/master/doc/example.png?raw=true)
 
-This extension uses the javascript library [mailcheck.js](http://github.com/Kicksend/mailcheck).
+##Installation
+1. Go to the [extension page](https://chrome.google.com/webstore/detail/mailcheck/olghnkfiljkinfbnichocbepnimdfclf) on the Chrome Web Store
+2. Click 'Add to Chrome'
+
+##License
+MailCheck extension for Chrome was created by Matthieu Bilbille and released under the MIT License.
+
+It uses the javascript library [mailcheck.js](http://github.com/Kicksend/mailcheck).
