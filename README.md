@@ -1,6 +1,7 @@
-#mailcheck extension for Chrome
+#mailcheck extension for Chrome [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/mbilbille/chrome-mailcheck/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-Chrome extension to suggest a right domain when you misspell it in an email address.
+> Chrome extension to suggest a right domain when you misspell it in an email address.
+
 
 ##What does it do?
 
