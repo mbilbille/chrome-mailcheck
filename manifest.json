@@ -3,16 +3,16 @@
 
     "name":"__MSG_extName__",
     "description":"__MSG_extDescription__",
-    "version": "1.5.6",
+    "version": "1.6.0",
 
     "default_locale": "en",
 
-    "permissions": [ 
+    "permissions": [
         "notifications",
         "storage"
     ],
 
-    "icons": { 
+    "icons": {
         "16": "resources/images/icon16.png",
         "48": "resources/images/icon48.png",
         "128": "resources/images/icon128.png"
@@ -33,13 +33,12 @@
     "content_scripts": [{
         "matches": ["<all_urls>"],
         "js": [
-            "resources/lib/zepto.min.js",
+            "resources/lib/jquery.min.js",
             "resources/lib/mailcheck.min.js",
-            "resources/js/tooltip.js",
-            "resources/js/options.js",
-            "script.js"
+            "resources/lib/bootstrap.min.js",
+            "resources/js/script.min.js"
         ],
-        "css": [ "resources/css/tooltip.css" ],
+        "css": [ "resources/css/style.min.css" ],
         "run_at": "document_end",
         "all_frames": true
     }],

@@ -1,67 +1,58 @@
 /**
  * Tooltip extension for MailCheck extension.
- * This script is based on work made by @ptech for zepto-tooltip project.
- * http://github.com/ptech/zepto-tooltip
- * 
+ *
  * Author
  * Matthieu Bilbille (@bilubilu28)
  */
- var mailcheck = mailcheck || {};
- mailcheck.tooltip = {
-    source: '',
-    suggestion: '',
-    
-    timeout: '',
-    target: '',
+ var ChromeMailcheck = ChromeMailcheck || {};
+ ChromeMailcheck.tooltip = {
+    id: "",
+    source: "",
+    suggestion: "",
+    element: null,
+    timeout: 0,
 
-    element: $('<div class="mailcheck-tooltip" style="background-image: url(\'' + chrome.runtime.getURL("/resources/images/icon16.png") + '\');"></div>'),
-    left: 0,
-    top: 0,
-    width: 0,
-    height: 0,
-
-    create: function(source, suggestion){
+    show: function(source, suggestion, element) {
         this.source = source;
         this.suggestion = suggestion;
-        suggestion = chrome.i18n.getMessage("notifMessage", ['<a href="#">' + suggestion + '</a>']);
-        this.element.css('opacity', 0).html(suggestion).appendTo('body');
-        this.width = this.element.width();
-        this.height = this.element.height();
-        return this;
-    },
-    show: function(target){
-        this.target = target;
-        this.left = target.offset().left + 20;
-        this.top = target.offset().top + target.height();
+        this.element = element;
 
-        this.element.css({
-            left: this.left,
-            top: this.top
-        }).animate({
-            translateY: "10px",
-            opacity: 1
-        }, 50);
+        // Generate tooltip
+        $(this.element).tooltip({
+           title: chrome.i18n.getMessage("notifMessage", ["<strong class='cm-mail'>" + suggestion + "</strong>"]),
+           container: "body",
+           placement: "bottom",
+           trigger: "manual",
+           html: "true",
+           template: "<div class='cm-tooltip tooltip' role='tooltip'><button type='button' class='cm-close'><span>&times;</span></button><div class='cm-tooltip-arrow tooltip-arrow'></div><div class='cm-tooltip-inner tooltip-inner'></div></div>"
+        });
 
-        // Close tooltip
-        this.timeout = window.setTimeout(mailcheck.tooltip.close.bind(this), 1e4);
-        this.element.on("click", mailcheck.tooltip.close.bind(this)); 
-        target.on("focus.notkeep", mailcheck.tooltip.close.bind(this));
-        this.element.children('a').on("click", function(){
-            var val = mailcheck.tooltip.target.val();
-            val = val.replace(mailcheck.tooltip.source, mailcheck.tooltip.suggestion);
-            mailcheck.tooltip.target.val(val);
+        // ... and show
+        $(this.element).tooltip("show");
+        this.id = $(this.element).attr("aria-describedby");
+
+        // close tooltip
+        //  - automatically after x seconds
+        //  - manually closed
+        //  - click on suggestion
+        this.timeout = window.setTimeout(function() {
+            ChromeMailcheck.tooltip.hide();
+        }, 7500);
+        $("#" + this.id + " .cm-close").on("click", function() {
+            ChromeMailcheck.tooltip.hide();
+        });
+        $("#" + this.id + " .cm-mail").on("click", function(){
+            var val = $(ChromeMailcheck.tooltip.element).val();
+            val = val.replace(ChromeMailcheck.tooltip.source, ChromeMailcheck.tooltip.suggestion);
+            $(ChromeMailcheck.tooltip.element).val(val);
+            ChromeMailcheck.tooltip.hide();
         });
     },
-    close: function(){
-        this.element.off("click");
-        this.target.off("focus.notkeep");
+
+    hide: function() {
+        $(this.element).tooltip("destroy");
+        $(".tooltip").off("click");
+        $("#" + this.id).children("a").off("click");
         clearTimeout(this.timeout);
-        this.element.children('a').off("click");
-        this.element.animate({
-            translateY: "-10px",
-            opacity: 0
-        }, 50, 'linear', function() {
-            mailcheck.tooltip.element.remove();
-        });
     }
-}
+};

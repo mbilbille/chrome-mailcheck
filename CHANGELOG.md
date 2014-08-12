@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done in 1.x versions
 
+##1.6
+###1.6.0 (08/12/2014)
+- Dropped Zepto dependency in favor of jQuery
+- Upgraded to MailCheck 1.1.0
+- Upgraded to Chrome UI bootstrap 1.4.0
+- Added Grunt support (jshint, concat, uglify, minify)
+- Switched to bootstrap tooltip
+- Fix #1 and #2
+
 ##1.5
 ###1.5.6 (12/11/2013)
 - Update to Zepto 1.1.1

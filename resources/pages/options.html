@@ -3,8 +3,8 @@
     <meta charset="utf-8">
     <title i18n-content="settingsPageTitle"></title>
     <script type="text/javascript" src="/resources/lib/mailcheck.min.js"></script>
-    <script type="text/javascript" src="/resources/lib/zepto.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/resources/css/chrome-bootstrap.css">
+    <script type="text/javascript" src="/resources/lib/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/resources/css/chrome-bootstrap.min.css">
     <style type="text/css">
     .hide{
         display: none;
@@ -12,59 +12,61 @@
     </style>
 </head>
 
-<body page="options" class="frame">
-    <div class="navigation">
-        <h1 i18n-content="extName"></h1>
-        <ul class="menu">
-            <li class="selected">
-                <a href="#settings" i18n-content="settingsPageTitle"></a>
-            </li>
-        </ul>
-    </div>
-    <div class="mainview view">
-        <div id="settings" class="selected">
-            <header>
-                <h1 i18n-content="settingsPageTitle"></h1>
-            </header>
-            <div class="content">
-                <section>
-                    <h3 i18n-content="sectionTitleDomains"></h3>
-                    <p i18n-content="addDomainsDescription"></p>
-                    <textarea id="domains" rows="4" cols="80"></textarea>
-                </section>
-                <section>
-                    <h3 i18n-content="sectionTitleNotification"></h3>
-                    <p i18n-content="changeNotificationDescription"></p>
-                    <p>
-                        <input type="radio" id="alertTypeTooltip" name="alertType" value="tooltip"/>
-                        <label for="alertTypeTooltip" i18n-content="optionsNotification1"></label>
-                    </p>
-                    <p>
-                        <input type="radio" id="alertTypeNotification" name="alertType" value="notification"/>
-                        <label for="alertTypeNotification" i18n-content="optionsNotification2"></label>
-                    </p>
-                </section>
-                <section class="advanced hide">
-                    <h3 i18n-content="sectionTitleTopLevelDomains"></h3>
-                    <p i18n-content="addTopLevelDomainsDescription"></p>
-                    <textarea id="topLevelDomains" rows="4" cols="80"></textarea>
-                </section>
-                <section class="advanced hide">
-                    <h3 i18n-content="sectionTitleSelectors"></h3>
-                    <p i18n-content="addSelectorsDescription"></p>
-                    <textarea id="selectors" rows="4" cols="80"></textarea>
-                </section>
-            </div>
-            <div class="controls">
-                <div id="showmore" class="text">
-                    <a href="#" id="showAdvanced" i18n-content="showAdvancedSettingsLabel"></a>
-                    <a href="#" id="hideAdvanced" i18n-content="hideAdvancedSettingsLabel" class="hide">a</a>
+<body page="options" class="chrome-bootstrap">
+    <div class="frame">
+        <div class="navigation">
+            <h1 i18n-content="extName"></h1>
+            <ul class="menu">
+                <li class="selected">
+                    <a href="#settings" i18n-content="settingsPageTitle"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="mainview view">
+            <div id="settings" class="selected">
+                <header>
+                    <h1 i18n-content="settingsPageTitle"></h1>
+                </header>
+                <div class="content">
+                    <section>
+                        <h3 i18n-content="sectionTitleDomains"></h3>
+                        <p i18n-content="addDomainsDescription"></p>
+                        <textarea id="domains" rows="4" cols="80"></textarea>
+                    </section>
+                    <section>
+                        <h3 i18n-content="sectionTitleNotification"></h3>
+                        <p i18n-content="changeNotificationDescription"></p>
+                        <p>
+                            <input type="radio" id="alertTypeTooltip" name="alertType" value="tooltip"/>
+                            <label for="alertTypeTooltip" i18n-content="optionsNotification1"></label>
+                        </p>
+                        <p>
+                            <input type="radio" id="alertTypeNotification" name="alertType" value="notification"/>
+                            <label for="alertTypeNotification" i18n-content="optionsNotification2"></label>
+                        </p>
+                    </section>
+                    <section class="advanced hide">
+                        <h3 i18n-content="sectionTitleTopLevelDomains"></h3>
+                        <p i18n-content="addTopLevelDomainsDescription"></p>
+                        <textarea id="topLevelDomains" rows="4" cols="80"></textarea>
+                    </section>
+                    <section class="advanced hide">
+                        <h3 i18n-content="sectionTitleSelectors"></h3>
+                        <p i18n-content="addSelectorsDescription"></p>
+                        <textarea id="selectors" rows="4" cols="80"></textarea>
+                    </section>
+                </div>
+                <div class="controls">
+                    <div id="showmore" class="text">
+                        <a href="#" id="showAdvanced" i18n-content="showAdvancedSettingsLabel"></a>
+                        <a href="#" id="hideAdvanced" i18n-content="hideAdvancedSettingsLabel" class="hide">a</a>
+                    </div>
                 </div>
                 <div class="spacer"></div>
-                <div id="status" class="text"></div>
+                <div id="status"></div>
             </div>
         </div>
-    </div>
+    <div class="frame">
 </body>
 <script type="text/javascript" src="/resources/js/options.js"></script>
 </html>
