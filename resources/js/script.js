@@ -185,15 +185,15 @@ ChromeMailcheck.extension = {
                 topLevelDomains: ChromeMailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
                     switch(ChromeMailcheck.options.alertType){
-                        case "notification" : chrome.extension.sendMessage({type: "notification", suggestion: suggestion.full});
+                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion.full});
                         break;
                         case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion.full, element);
                         break;
                     }
-                    chrome.extension.sendMessage({type: "ga", result: "suggested"});
+                    chrome.runtime.sendMessage({type: "ga", result: "suggested"});
                 },
                 empty: function() {
-                    chrome.extension.sendMessage({type: "ga", result: "empty"});
+                    chrome.runtime.sendMessage({type: "ga", result: "empty"});
                 }
             });
         }

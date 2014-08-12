@@ -8,19 +8,20 @@
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 
-chrome.extension.onMessage.addListener(
-    function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(
+    function(request, sender) {
         if(request.type == "ga"){
             _gaq.push(['_trackEvent', 'mailcheck', request.result]);
         }
         if(request.type == "notification"){
-        var notification = webkitNotifications.createNotification(
-            'resources/images/icon128.png',
-            chrome.i18n.getMessage("notifTitle"),
-            chrome.i18n.getMessage("notifMessage", [request.suggestion])
-            );
-        notification.show();
-        window.setTimeout(function() { notification.close() }, 10000);
+            var notification = chrome.notifications.create('', {
+                type: "basic",
+                iconUrl: 'resources/images/icon128.png',
+                title: chrome.i18n.getMessage("notifTitle"),
+                message: chrome.i18n.getMessage("notifMessage", [request.suggestion])
+            }, function(notificationId) {
+                window.setTimeout(function() { chrome.notifications.clear(notificationId, function(wasCleared) {}) }, 10000);
+            });
         }
     }
 );

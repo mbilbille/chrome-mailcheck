@@ -51,25 +51,47 @@ module.exports = function(grunt) {
 		},
 
 		cssmin: {
-      minify: {
-        expand: true,
-        cwd : 'resources/css/',
-        src: ['style.css'],
-        dest: 'resources/css/',
-        ext: '.min.css'
-      },
-      options: {
+			minify: {
+				expand: true,
+				cwd : 'resources/css/',
+				src: ['style.css'],
+				dest: 'resources/css/',
+				ext: '.min.css'
+			},
+			options: {
 				banner: "<%= meta.banner %>",
 				report: 'gzip'
 			}
-    }
+		},
+
+		'chrome-extension': {
+				options: {
+						name: "<%= pkg.name %>",
+						version: "<%= pkg.version %>",
+						id: "bjgbmbcjjngekbbjioohicaidafndfdg",
+						chrome: "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
+						clean: true,
+						certDir: 'cert',
+						buildDir: 'build',
+						resources: [
+								"_locales/**",
+								"resources/css/*.min.css",
+								"resources/images/**",
+								"resources/js/*.min.js",
+								"resources/lib/**",
+								"resources/**.html",
+								"LICENSE"
+						]
+				}
+			}
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
+	grunt.loadNpmTasks('grunt-chrome-compile');
 
-	grunt.registerTask("default", ["jshint", "concat", "uglify", "cssmin"]);
+	grunt.registerTask("default", ["jshint", "concat", "uglify", "cssmin", "chrome-extension"]);
 	grunt.registerTask("travis", ["jshint"]);
 };
