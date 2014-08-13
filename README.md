@@ -2,6 +2,7 @@
 
 > Chrome extension to suggest a right domain when you misspell it in an email address.
 
+![diagram](https://github.com/mbilbille/chrome-mailcheck/raw/master/doc/mail-check-title.png?raw=true)
 
 ##What does it do?
 
