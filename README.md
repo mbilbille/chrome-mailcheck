@@ -6,7 +6,7 @@
 
 ##What does it do?
 
-When a user types in "user@hotnail.con", Mailcheck will suggest "user@hotmail.com".
+When a user types in "user@yahooo.con", Mailcheck will suggest "user@yahoo.com".
 
 ![diagram](https://github.com/mbilbille/chrome-mailcheck/raw/master/doc/example.png?raw=true)
 
