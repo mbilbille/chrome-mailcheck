@@ -10,6 +10,7 @@
  Mailcheck.defaultTopLevelDomains.push("fr");
  ChromeMailcheck.options = {
     alertType: "tooltip",
+    displayTime: 10000,
     domains: Mailcheck.defaultDomains,
     topLevelDomains: Mailcheck.defaultTopLevelDomains,
     selectors: ["textarea", "input[type='text']", "input[type='email']"],
@@ -42,6 +43,7 @@
                 ChromeMailcheck.options.alertType = $(this).val();
             }
         });
+        this.displayTime = $("#displayTimeNotification").val() * 1000;
         this.topLevelDomains = $("#topLevelDomains").val().replace(/\s+/g, "").split(",");
         this.selectors = $("#selectors").val().replace(/\s+/g, "").split(",");
 
@@ -49,6 +51,7 @@
         var data = {
             "domains": this.domains,
             "alertType": this.alertType,
+            "displayTime": this.displayTime,
             "topLevelDomains": this.topLevelDomains,
             "selectors": this.selectors,
         };
@@ -61,7 +64,7 @@
         });
     },
     load: function(callback){
-        chrome.storage.sync.get(["domains", "topLevelDomains", "selectors", "alertType"], function(items){
+        chrome.storage.sync.get(["domains", "topLevelDomains", "selectors", "alertType", "displayTime"], function(items){
             for(var i in items) {
                 ChromeMailcheck.options[i] = items[i];
             }
@@ -76,6 +79,7 @@
         $("#topLevelDomains").val(this.topLevelDomains.join(", "));
         $("#selectors").val(this.selectors.join(", "));
         $("input[name='alertType'][value='" + this.alertType + "']").attr("checked", "true");
+        $("#displayTimeNotification").val(this.displayTime / 1000);
     },
     localize: function() {
         $("[i18n-content]").each(function() {

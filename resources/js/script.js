@@ -18,6 +18,7 @@
  Mailcheck.defaultTopLevelDomains.push("fr");
  ChromeMailcheck.options = {
     alertType: "tooltip",
+    displayTime: 10000,
     domains: Mailcheck.defaultDomains,
     topLevelDomains: Mailcheck.defaultTopLevelDomains,
     selectors: ["textarea", "input[type='text']", "input[type='email']"],
@@ -50,6 +51,7 @@
                 ChromeMailcheck.options.alertType = $(this).val();
             }
         });
+        this.displayTime = $("#displayTimeNotification").val() * 1000;
         this.topLevelDomains = $("#topLevelDomains").val().replace(/\s+/g, "").split(",");
         this.selectors = $("#selectors").val().replace(/\s+/g, "").split(",");
 
@@ -57,6 +59,7 @@
         var data = {
             "domains": this.domains,
             "alertType": this.alertType,
+            "displayTime": this.displayTime,
             "topLevelDomains": this.topLevelDomains,
             "selectors": this.selectors,
         };
@@ -69,7 +72,7 @@
         });
     },
     load: function(callback){
-        chrome.storage.sync.get(["domains", "topLevelDomains", "selectors", "alertType"], function(items){
+        chrome.storage.sync.get(["domains", "topLevelDomains", "selectors", "alertType", "displayTime"], function(items){
             for(var i in items) {
                 ChromeMailcheck.options[i] = items[i];
             }
@@ -84,6 +87,7 @@
         $("#topLevelDomains").val(this.topLevelDomains.join(", "));
         $("#selectors").val(this.selectors.join(", "));
         $("input[name='alertType'][value='" + this.alertType + "']").attr("checked", "true");
+        $("#displayTimeNotification").val(this.displayTime / 1000);
     },
     localize: function() {
         $("[i18n-content]").each(function() {
@@ -107,52 +111,78 @@ if($("body").attr("page") === "options"){
  ChromeMailcheck.tooltip = {
     id: "",
     source: "",
-    suggestion: "",
+    suggestion: {},
     element: null,
     timeout: 0,
+    flag: false,
+    btn: "<button type='button' class='cm-btn cm-btn-default cm-btn-xs btn btn-default btn-xs'>Yes</button>",
+
+    options: {
+        container: "body",
+        placement: "bottom",
+        trigger: "manual",
+        html: "true",
+        template: "<div class='cm-tooltip tooltip' role='tooltip'><button type='button' class='cm-close'><span>&times;</span></button><div class='cm-tooltip-arrow tooltip-arrow'></div><div class='cm-tooltip-inner tooltip-inner'></div></div>"
+    },
 
     show: function(source, suggestion, element) {
         this.source = source;
         this.suggestion = suggestion;
-        this.element = element;
 
         // Generate tooltip
-        $(this.element).tooltip({
-           title: chrome.i18n.getMessage("notifMessage", ["<strong class='cm-mail'>" + suggestion + "</strong>"]),
-           container: "body",
-           placement: "bottom",
-           trigger: "manual",
-           html: "true",
-           template: "<div class='cm-tooltip tooltip' role='tooltip'><button type='button' class='cm-close'><span>&times;</span></button><div class='cm-tooltip-arrow tooltip-arrow'></div><div class='cm-tooltip-inner tooltip-inner'></div></div>"
-        });
+        $(element).tooltip($.extend({}, ChromeMailcheck.tooltip.options, {
+           title: chrome.i18n.getMessage("notifMessage", ["<a class='cm-link' href='#'>" + suggestion.full + "</a>"])
+        }));
 
         // ... and show
-        $(this.element).tooltip("show");
-        this.id = $(this.element).attr("aria-describedby");
+        $(element).tooltip("show");
+        var id = $(element).attr("aria-describedby");
 
         // close tooltip
         //  - automatically after x seconds
         //  - manually closed
         //  - click on suggestion
+        clearTimeout(this.timeout);
         this.timeout = window.setTimeout(function() {
-            ChromeMailcheck.tooltip.hide();
-        }, 7500);
-        $("#" + this.id + " .cm-close").on("click", function() {
-            ChromeMailcheck.tooltip.hide();
+            ChromeMailcheck.tooltip.hide(element);
+        }, ChromeMailcheck.options.displayTime);
+        $("#" + id + " .cm-close").on("click", function() {
+            (ChromeMailcheck.tooltip.flag) ? ChromeMailcheck.tooltip.hide(element) : ChromeMailcheck.tooltip.addDomain(element);
         });
-        $("#" + this.id + " .cm-mail").on("click", function(){
+        $("#" + id + " a").on("click", function(e){
+            e.preventDefault();
             var val = $(ChromeMailcheck.tooltip.element).val();
-            val = val.replace(ChromeMailcheck.tooltip.source, ChromeMailcheck.tooltip.suggestion);
+            val = val.replace(ChromeMailcheck.tooltip.source, ChromeMailcheck.tooltip.suggestion.full);
             $(ChromeMailcheck.tooltip.element).val(val);
-            ChromeMailcheck.tooltip.hide();
+            ChromeMailcheck.tooltip.hide(element);
         });
     },
 
-    hide: function() {
-        $(this.element).tooltip("destroy");
-        $(".tooltip").off("click");
-        $("#" + this.id).children("a").off("click");
+    reset: function(element) {
+        var id = $(element).attr("aria-describedby");
         clearTimeout(this.timeout);
+        $("#" + id).children("a").off("click");
+    },
+
+    hide: function(element) {
+        var id = $(element).attr("aria-describedby");
+        ChromeMailcheck.tooltip.reset(element);
+        $(element).tooltip("destroy");
+        $("#" + id + " .cm-close").off("click");
+        this.flag = false;
+    },
+
+    addDomain: function(element) {
+        var id = $(element).attr("aria-describedby");
+        var domain = ChromeMailcheck.tooltip.source.replace(/.*@/, "");
+        ChromeMailcheck.tooltip.reset(element);
+        $(".tooltip-inner").html(chrome.i18n.getMessage("notifAddToWhitelist", ["<a class='cm-link' href='#'>" + domain + "</a>"]));
+        $("#" + id + " a").on("click", function(e){
+            e.preventDefault();
+            ChromeMailcheck.options.domains.push(items.domains);
+            chrome.storage.sync.set({"domains" : ChromeMailcheck.options.domains});
+        });
+        this.flag = true;
     }
 };
 
@@ -173,6 +203,10 @@ ChromeMailcheck.extension = {
             $(document).on("blur", ChromeMailcheck.options.selectors.join(","), function(){
                 ChromeMailcheck.extension.run(this);
             });
+            $(document).on("change", ChromeMailcheck.options.selectors.join(","), function(){
+                console.log("change");
+                ChromeMailcheck.extension.reset(this);
+            });
         });
     },
     run: function(element) {
@@ -185,9 +219,9 @@ ChromeMailcheck.extension = {
                 topLevelDomains: ChromeMailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
                     switch(ChromeMailcheck.options.alertType){
-                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion.full});
+                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
                         break;
-                        case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion.full, element);
+                        case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion, element);
                         break;
                     }
                     chrome.runtime.sendMessage({type: "ga", result: "suggested"});
@@ -196,6 +230,14 @@ ChromeMailcheck.extension = {
                     chrome.runtime.sendMessage({type: "ga", result: "empty"});
                 }
             });
+        }
+    },
+    reset: function(element) {
+        switch(ChromeMailcheck.options.alertType){
+            case "notification" : //chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
+            break;
+            case "tooltip" : ChromeMailcheck.tooltip.hide(element);
+            break;
         }
     }
 };

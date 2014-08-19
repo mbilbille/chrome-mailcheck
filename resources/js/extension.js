@@ -15,6 +15,9 @@ ChromeMailcheck.extension = {
             $(document).on("blur", ChromeMailcheck.options.selectors.join(","), function(){
                 ChromeMailcheck.extension.run(this);
             });
+            $(document).on("change", ChromeMailcheck.options.selectors.join(","), function(){
+                ChromeMailcheck.extension.reset(this);
+            });
         });
     },
     run: function(element) {
@@ -27,9 +30,9 @@ ChromeMailcheck.extension = {
                 topLevelDomains: ChromeMailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
                     switch(ChromeMailcheck.options.alertType){
-                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion.full});
+                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
                         break;
-                        case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion.full, element);
+                        case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion, element);
                         break;
                     }
                     chrome.runtime.sendMessage({type: "ga", result: "suggested"});
@@ -38,6 +41,14 @@ ChromeMailcheck.extension = {
                     chrome.runtime.sendMessage({type: "ga", result: "empty"});
                 }
             });
+        }
+    },
+    reset: function(element) {
+        switch(ChromeMailcheck.options.alertType){
+            case "notification" : //chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
+            break;
+            case "tooltip" : ChromeMailcheck.tooltip.hide(element);
+            break;
         }
     }
 };

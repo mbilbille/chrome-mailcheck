@@ -21,6 +21,16 @@
             }
         }
     },
+    "notifAddToWhitelist": {
+        "message": "Do you wish to check against $domain$ domain in future?",
+        "description": "Notification message to add a domain via the tooltip.",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "hotmail.com"
+            }
+        }
+    },
     "settingsPageTitle": {
         "message": "Settings",
         "description": "Settings page title."
@@ -48,6 +58,10 @@
     "optionsNotification2": {
         "message": "Chrome desktop notification",
         "description": "Notification second option."
+    },
+    "labelDisplayTime": {
+        "message": "Notification display time?",
+        "description": "Label for notification display time."
     },
     "sectionTitleTopLevelDomains": {
         "message": "Top level domains",

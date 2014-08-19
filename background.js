@@ -18,9 +18,9 @@ chrome.runtime.onMessage.addListener(
                 type: "basic",
                 iconUrl: 'resources/images/icon128.png',
                 title: chrome.i18n.getMessage("notifTitle"),
-                message: chrome.i18n.getMessage("notifMessage", [request.suggestion])
+                message: chrome.i18n.getMessage("notifMessage", [request.suggestion.full])
             }, function(notificationId) {
-                window.setTimeout(function() { chrome.notifications.clear(notificationId, function(wasCleared) {}) }, 10000);
+                window.setTimeout(function() { chrome.notifications.clear(notificationId, function(wasCleared) {}) }, ChromeMailcheck.options.displayTime);
             });
         }
     }

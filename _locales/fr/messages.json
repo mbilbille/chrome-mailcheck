@@ -21,6 +21,16 @@
             }
         }
     },
+    "notifAddToWhitelist": {
+        "message": "Souhaitez-vous vérifier le domaine $domain$ lors de vos prochaines saisies?",
+        "description": "Message pour ajouter un domaine via le tooltip.",
+        "placeholders": {
+            "domain": {
+                "content": "$1",
+                "example": "hotmail.com"
+            }
+        }
+    },
     "settingsPageTitle": {
         "message": "Paramètres",
         "description": "Titre de la page Paramètres."
