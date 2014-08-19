@@ -1,10 +1,11 @@
-a {
-  color: #428bca;
+.cm-link {
+  color: #fff;
+  font-weight: bold;
   text-decoration: none;
 }
-a:hover,
-a:focus {
-  color: #2a6496;
+.cm-link:hover,
+.cm-link:focus {
+  color: #fff;
   text-decoration: underline;
 }
 .cm-tooltip {
@@ -44,7 +45,7 @@ a:focus {
   color: #fff;
   text-align: center;
   text-decoration: none;
-  background-color: #222;
+  background-color: #d9534f;
   line-height: 1.286;
   padding: 12px 12px !important;
   width: 183px;
@@ -60,7 +61,7 @@ a:focus {
 .cm-tooltip.top .cm-tooltip-arrow {
   bottom: 0;
   left: 50%;
-  border-top-color: #222;
+  border-top-color: #d9534f;
   border-width: 9px 9px 0;
   bottom: 0;
   margin-left: -9px;
@@ -70,31 +71,31 @@ a:focus {
   bottom: 0;
   left: 5px;
   border-width: 5px 5px 0;
-  border-top-color: #000;
+  border-top-color: #d9534f;
 }
 .cm-tooltip.top-right .cm-tooltip-arrow {
   right: 5px;
   bottom: 0;
   border-width: 5px 5px 0;
-  border-top-color: #000;
+  border-top-color: #d9534f;
 }
 .cm-tooltip.right .cm-tooltip-arrow {
   top: 50%;
-  border-right-color: #222;
+  border-right-color: #d9534f;
   border-width: 9px 9px 9px 0;
   margin-top: -9px;
   left: -3px;
 }
 .cm-tooltip.left .cm-tooltip-arrow {
   top: 50%;
-  border-left-color: #222;
+  border-left-color: #d9534f;
   border-width: 9px 0 9px 9px;
   margin-top: -9px;
   right: -3px;
 }
 .cm-tooltip.bottom .cm-tooltip-arrow {
   left: 50%;
-  border-bottom-color: #222;
+  border-bottom-color: #d9534f;
   border-width: 0 9px 9px;
   margin-left: -9px;
   top: -1px;
@@ -103,13 +104,13 @@ a:focus {
   top: 0;
   left: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #000;
+  border-bottom-color: #d9534f;
 }
 .cm-tooltip.bottom-right .cm-tooltip-arrow {
   top: 0;
   right: 5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #000;
+  border-bottom-color: #d9534f;
 }
 .cm-close {
   float: right;
@@ -127,6 +128,7 @@ a:focus {
   text-decoration: none;
   cursor: pointer;
   opacity: .5;
+  outline: none;
 }
 button.cm-close {
   -webkit-appearance: none;
@@ -134,101 +136,4 @@ button.cm-close {
   cursor: pointer;
   background: transparent;
   border: 0;
-}
-
-.cm-btn {
-  display: inline-block;
-  margin-bottom: 0;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  cursor: pointer;
-  -webkit-user-select: none;
-          user-select: none;
-  background-image: none;
-  border: none;
-  font-size: 15px;
-  font-weight: normal;
-  line-height: 1.4;
-  border-radius: 4px;
-  padding: 10px 15px;
-  -webkit-font-smoothing: subpixel-antialiased;
-  -webkit-transition: border .25s linear, color .25s linear, background-color .25s linear;
-  transition: border .25s linear, color .25s linear, background-color .25s linear;
-}
-.cm-btn:focus,
-.cm-btn:active:focus,
-.cm-btn.active:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.cm-btn:hover,
-.cm-btn:focus {
-  text-decoration: none;
-  outline: none;
-  color: #ffffff;
-}
-.cm-btn:active,
-.cm-btn.active {
-  background-image: none;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.cm-btn.disabled,
-.cm-btn[disabled],
-fieldset[disabled] .cm-btn {
-  pointer-events: none;
-  cursor: not-allowed;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  background-color: #bdc3c7;
-  color: rgba(255, 255, 255, 0.75);
-  opacity: 0.7;
-}
-.cm-btn-default {
-  color: #ffffff;
-  background-color: #3498db;
-}
-.cm-btn-default:hover,
-.cm-btn-default:focus,
-.cm-btn-default:active,
-.cm-btn-default.active {
-  color: #ffffff;
-  background-color: #5dade2;
-  border-color: #5dade2;
-}
-.cm-btn-default:active,
-.cm-btn-default.active {
-  background: #2c81ba;
-  border-color: #2c81ba;
-}
-.cm-btn-default.disabled,
-.cm-btn-default[disabled],
-fieldset[disabled] .cm-btn-default,
-.cm-btn-default.disabled:hover,
-.cm-btn-default[disabled]:hover,
-fieldset[disabled] .cm-btn-default:hover,
-.cm-btn-default.disabled:focus,
-.cm-btn-default[disabled]:focus,
-fieldset[disabled] .cm-btn-default:focus,
-.cm-btn-default.disabled:active,
-.cm-btn-default[disabled]:active,
-fieldset[disabled] .cm-btn-default:active,
-.cm-btn-default.disabled.active,
-.cm-btn-default[disabled].active,
-fieldset[disabled] .cm-btn-default.active {
-  background-color: #3498db;
-  border-color: #3498db;
-}
-.cm-btn-default .badge {
-  color: #fff;
-  background-color: #333;
-}
-.cm-btn-xs {
-  padding: 5px 10px;
-  font-size: 12px;
-  line-height: 1.5;
-  border-radius: 3px;
 }

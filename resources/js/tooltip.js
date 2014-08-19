@@ -12,7 +12,6 @@
     element: null,
     timeout: 0,
     flag: false,
-    btn: "<button type='button' class='cm-btn cm-btn-default cm-btn-xs btn btn-default btn-xs'>Yes</button>",
 
     options: {
         container: "body",
