@@ -20,7 +20,7 @@ chrome.runtime.onMessage.addListener(
                 title: chrome.i18n.getMessage("notifTitle"),
                 message: chrome.i18n.getMessage("notifMessage", [request.suggestion.full])
             }, function(notificationId) {
-                window.setTimeout(function() { chrome.notifications.clear(notificationId, function(wasCleared) {}) }, ChromeMailcheck.options.displayTime);
+                window.setTimeout(function() { chrome.notifications.clear(notificationId, function(wasCleared) {}) }, request.displayTime);
             });
         }
     }

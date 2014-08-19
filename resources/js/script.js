@@ -204,7 +204,6 @@ ChromeMailcheck.extension = {
                 ChromeMailcheck.extension.run(this);
             });
             $(document).on("change", ChromeMailcheck.options.selectors.join(","), function(){
-                console.log("change");
                 ChromeMailcheck.extension.reset(this);
             });
         });
@@ -219,7 +218,7 @@ ChromeMailcheck.extension = {
                 topLevelDomains: ChromeMailcheck.options.topLevelDomains,
                 suggested: function(suggestion) {
                     switch(ChromeMailcheck.options.alertType){
-                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
+                        case "notification" : chrome.runtime.sendMessage({type: "notification", suggestion: suggestion, displayTime: ChromeMailcheck.options.displayTime});
                         break;
                         case "tooltip" : ChromeMailcheck.tooltip.show(emails[i], suggestion, element);
                         break;
@@ -234,7 +233,7 @@ ChromeMailcheck.extension = {
     },
     reset: function(element) {
         switch(ChromeMailcheck.options.alertType){
-            case "notification" : //chrome.runtime.sendMessage({type: "notification", suggestion: suggestion});
+            case "notification" : // Not supported yet.
             break;
             case "tooltip" : ChromeMailcheck.tooltip.hide(element);
             break;
