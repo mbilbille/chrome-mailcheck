@@ -3,7 +3,6 @@
 	"title": "Mailcheck for Chrome",
 	"version": "1.6.0",
 	"description": "Chrome extension to suggests a right domain when your users misspell it in an email address",
-	"main": "script.js",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:mbilbille/chrome-mailcheck.git"
@@ -29,7 +28,8 @@
 		"grunt-contrib-jshint": "~0.10.0",
 		"grunt-contrib-concat": "~0.4.0",
 		"grunt-contrib-uglify": "~0.4.0",
-		"grunt-contrib-cssmin": "~0.7.0"
+		"grunt-contrib-cssmin": "~0.7.0",
+		"grunt-contrib-compress" : "~0.9.0"
 	},
 	"engines": {
     "node": ">= 0.10.0"

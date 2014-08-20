@@ -21,7 +21,7 @@ module.exports = function(grunt) {
 		concat: {
 			dist: {
 				files : {
-					"resources/js/script.js" : ["resources/js/options.js", "resources/js/tooltip.js", "resources/js/extension.js"]
+					"src/resources/js/script.js" : ["src/resources/js/options.js", "src/resources/js/tooltip.js", "src/resources/js/extension.js"]
 				}
 			},
 			options: {
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
 		// Lint definitions
 		jshint: {
-			files: ["resources/js/extension.js", "resources/js/tooltip.js" , "resources/js/options.js"],
+			files: ["src/resources/js/extension.js", "src/resources/js/tooltip.js" , "src/resources/js/options.js"],
 			options: {
 				jshintrc: ".jshintrc"
 			}
@@ -41,7 +41,7 @@ module.exports = function(grunt) {
 		uglify: {
 			my_target: {
 				files: {
-					"resources/js/script.min.js" : "resources/js/script.js"
+					"src/resources/js/script.min.js" : "src/resources/js/script.js"
 				}
 			},
 			options: {
@@ -53,9 +53,9 @@ module.exports = function(grunt) {
 		cssmin: {
 			minify: {
 				expand: true,
-				cwd : 'resources/css/',
+				cwd : 'src/resources/css/',
 				src: ['style.css'],
-				dest: 'resources/css/',
+				dest: 'src/resources/css/',
 				ext: '.min.css'
 			},
 			options: {
@@ -64,34 +64,38 @@ module.exports = function(grunt) {
 			}
 		},
 
-		'chrome-extension': {
+		compress: {
+			main: {
 				options: {
-						name: "<%= pkg.name %>",
-						version: "<%= pkg.version %>",
-						id: "bjgbmbcjjngekbbjioohicaidafndfdg",
-						chrome: "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-						clean: true,
-						certDir: 'cert',
-						buildDir: 'build',
-						resources: [
-								"_locales/**",
-								"resources/css/*.min.css",
-								"resources/images/**",
-								"resources/js/*.min.js",
-								"resources/lib/**",
-								"resources/**.html",
-								"LICENSE"
-						]
-				}
+					archive: "dist/<%= pkg.name %>.zip"
+				},
+				files: [
+					{
+						expand: true,
+						cwd: "src",
+						src: [
+							"manifest.json",
+							"background.js",
+							"_locales/**",
+							"resources/css/*.min.css",
+							"resources/images/**",
+							"resources/js/*.min.js",
+							"resources/lib/**",
+							"resources/**.html"
+						],
+						dest: "<%= pkg.name %>"
+					}
+				]
 			}
+		}
 	});
 
 	grunt.loadNpmTasks("grunt-contrib-concat");
 	grunt.loadNpmTasks("grunt-contrib-jshint");
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 	grunt.loadNpmTasks("grunt-contrib-cssmin");
-	grunt.loadNpmTasks('grunt-chrome-compile');
+	grunt.loadNpmTasks('grunt-contrib-compress');
 
-	grunt.registerTask("default", ["jshint", "concat", "uglify", "cssmin", "chrome-extension"]);
+	grunt.registerTask("default", ["jshint", "concat", "uglify", "cssmin", "compress"]);
 	grunt.registerTask("travis", ["jshint"]);
 };
