@@ -1,5 +1,5 @@
 /*
- *  Mailcheck for Chrome - v1.6.0.4
+ *  Mailcheck for Chrome - v1.6.1
  *  Chrome extension to suggests a right domain when your users misspell it in an email address
  *  https://github.com/mbilbille/chrome-mailcheck
  *

@@ -3,6 +3,8 @@
 This changelog references the relevant changes (bug and security fixes) done in 1.x versions
 
 ##1.6
+###1.6.1 (08/28/2014)
+- Few fixes upon deploy
 ###1.6.0 (08/12/2014)
 - Dropped Zepto dependency in favor of jQuery
 - Upgraded to MailCheck 1.1.0
