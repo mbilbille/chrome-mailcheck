@@ -1,11 +1,11 @@
 .cm-link {
-  color: #fff;
+  color: #fff !important;
   font-weight: bold;
   text-decoration: none;
 }
 .cm-link:hover,
 .cm-link:focus {
-  color: #fff;
+  color: #fff !important;
   text-decoration: underline;
 }
 .cm-tooltip {
@@ -41,14 +41,13 @@
   margin-left: -3px;
 }
 .cm-tooltip-inner {
-  max-width: 600px;
+  max-width: 250px;
   color: #fff;
   text-align: center;
   text-decoration: none;
   background-color: #d9534f;
   line-height: 1.286;
   padding: 12px 12px !important;
-  width: 183px;
   border-radius: 6px;
 }
 .cm-tooltip-arrow {

@@ -81,7 +81,7 @@ module.exports = function(grunt) {
 							"resources/images/**",
 							"resources/js/*.min.js",
 							"resources/lib/**",
-							"resources/**.html"
+							"resources/pages/**"
 						],
 						dest: "<%= pkg.name %>"
 					}

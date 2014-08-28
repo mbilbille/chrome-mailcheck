@@ -1,5 +1,5 @@
 /*
- *  Mailcheck for Chrome - v1.6.0
+ *  Mailcheck for Chrome - v1.6.0.4
  *  Chrome extension to suggests a right domain when your users misspell it in an email address
  *  https://github.com/mbilbille/chrome-mailcheck
  *
@@ -130,7 +130,7 @@ if($("body").attr("page") === "options"){
 
         // Generate tooltip
         $(element).tooltip($.extend({}, ChromeMailcheck.tooltip.options, {
-           title: chrome.i18n.getMessage("notifMessage", ["<a class='cm-link' href='#'>" + suggestion.full + "</a>"])
+           title: chrome.i18n.getMessage("notifMessage", ["<br /><a class='cm-link' href='#'>" + suggestion.full + "</a>"])
         }));
 
         // ... and show
@@ -178,8 +178,9 @@ if($("body").attr("page") === "options"){
         $(".tooltip-inner").html(chrome.i18n.getMessage("notifAddToWhitelist", ["<a class='cm-link' href='#'>" + domain + "</a>"]));
         $("#" + id + " a").on("click", function(e){
             e.preventDefault();
-            ChromeMailcheck.options.domains.push(items.domains);
+            ChromeMailcheck.options.domains.push(domain);
             chrome.storage.sync.set({"domains" : ChromeMailcheck.options.domains});
+            ChromeMailcheck.tooltip.hide(element);
         });
         this.flag = true;
     }

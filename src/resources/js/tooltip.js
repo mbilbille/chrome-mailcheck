@@ -27,7 +27,7 @@
 
         // Generate tooltip
         $(element).tooltip($.extend({}, ChromeMailcheck.tooltip.options, {
-           title: chrome.i18n.getMessage("notifMessage", ["<a class='cm-link' href='#'>" + suggestion.full + "</a>"])
+           title: chrome.i18n.getMessage("notifMessage", ["<br /><a class='cm-link' href='#'>" + suggestion.full + "</a>"])
         }));
 
         // ... and show
@@ -75,8 +75,9 @@
         $(".tooltip-inner").html(chrome.i18n.getMessage("notifAddToWhitelist", ["<a class='cm-link' href='#'>" + domain + "</a>"]));
         $("#" + id + " a").on("click", function(e){
             e.preventDefault();
-            ChromeMailcheck.options.domains.push(items.domains);
+            ChromeMailcheck.options.domains.push(domain);
             chrome.storage.sync.set({"domains" : ChromeMailcheck.options.domains});
+            ChromeMailcheck.tooltip.hide(element);
         });
         this.flag = true;
     }
