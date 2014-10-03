@@ -1,7 +1,7 @@
 /**
  * Mailcheck for Chrome https://github.com/mbilbille/chrome-mailcheck
  * Author
- * Matthieu Bilbille (@bilubilu28)
+ * Matthieu Bilbille (@mbilbille)
  *
  * Licensed under the MIT License.
  *

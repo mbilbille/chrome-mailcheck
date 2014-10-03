@@ -2,7 +2,7 @@
  * Options page for MailCheck extension.
  *
  * Author
- * Matthieu Bilbille (@bilubilu28)
+ * Matthieu Bilbille (@mbilbille)
  */
 
  var ChromeMailcheck = ChromeMailcheck || {};

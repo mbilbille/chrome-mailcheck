@@ -2,14 +2,13 @@
  * Tooltip extension for MailCheck extension.
  *
  * Author
- * Matthieu Bilbille (@bilubilu28)
+ * Matthieu Bilbille (@mbilbille)
  */
  var ChromeMailcheck = ChromeMailcheck || {};
  ChromeMailcheck.tooltip = {
     id: "",
     source: "",
     suggestion: {},
-    element: null,
     timeout: 0,
     flag: false,
 
@@ -47,9 +46,9 @@
         });
         $("#" + id + " a").on("click", function(e){
             e.preventDefault();
-            var val = $(ChromeMailcheck.tooltip.element).val();
+            var val = $(element).val();
             val = val.replace(ChromeMailcheck.tooltip.source, ChromeMailcheck.tooltip.suggestion.full);
-            $(ChromeMailcheck.tooltip.element).val(val);
+            $(element).val(val);
             ChromeMailcheck.tooltip.hide(element);
         });
     },
