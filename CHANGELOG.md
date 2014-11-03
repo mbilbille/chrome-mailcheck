@@ -3,6 +3,7 @@
 This changelog references the relevant changes (bug and security fixes) done in 1.x versions
 
 ##1.6
+###1.6.2 (11/03/2014)
 ###1.6.1 (08/28/2014)
 - Few fixes upon deploy
 ###1.6.0 (08/12/2014)
